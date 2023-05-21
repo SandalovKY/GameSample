@@ -21,12 +21,13 @@ public:
 	{}
 
 	bool snakeOnFruit(Snake& snk, Fruits& fruit) {
-		return snk.getCoords() == fruit.getCoords();
+		return snk.getCoords().X == fruit.getCoords().X &&
+			snk.getCoords().Y == fruit.getCoords().X;
 	}
 
 	void runGame() override {
 		view.printMessage();
-		Fruits fruit{ COORD{}, 0, view.getViewGrid() };
+		Fruits fruit{ {WIDTH / 4, HEIGHT / 4}, '%', view.getViewGrid()};
 		updateFruit(fruit, view.getViewGrid());
 		while (true) {
 			view.drawLines();
