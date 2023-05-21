@@ -1,3 +1,0 @@
-C:/Users/User/git_files/GameSample/cmake-build-debug/CMakeFiles/GameSample.dir
-C:/Users/User/git_files/GameSample/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/User/git_files/GameSample/cmake-build-debug/CMakeFiles/rebuild_cache.dir
