@@ -1,6 +1,5 @@
 #pragma once
 #include "BaseGrid.h"
-
 #include <string>
 #include <iostream>
 
@@ -10,6 +9,8 @@ protected:
 	int height;
 	int width;
 	BaseGrid grid;
+	std::string dynamicInfo;
+private:
 	void resetView(short start_x, short start_y) const {
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { start_x, start_y });
 	}
@@ -23,15 +24,20 @@ public:
 		std::string controlsLine{ "Now you are using empty view." };
 		std::cout << controlsLine << std::endl;
 	}
+	void updateDynamicInfo(const std::string& info)
+	{
+		this->dynamicInfo = info;
+	}
 	// Вывод построчно
 	virtual void drawLines() const {
 		resetView(0, 1);
+		std::cout << dynamicInfo << std::endl;
 		std::string edgeLine(static_cast<size_t>(width + 2), '#');
 		std::cout << edgeLine << std::endl;
 		for (int y = 0; y < height; ++y) {
 			std::cout << '#' << grid.getLine(y) << '#' << std::endl;
 		}
-		std::cout << edgeLine << std::endl;
+		std::cout << edgeLine << std::endl; 
 	}
 	BaseGrid& getViewGrid() {
 		return this->grid;
