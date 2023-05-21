@@ -16,18 +16,18 @@ class SnakeTheGame : public GameBase
 public:
 	SnakeTheGame() :
 		view(WIDTH, HEIGHT),
-		snk( WIDTH / 2, HEIGHT / 2, view.getViewGrid(), '*', 1 ),
+		snk( WIDTH / 4, HEIGHT / 4, view.getViewGrid(), '*', 1 ),
 		controls(snk)
 	{}
 
 	bool snakeOnFruit(Snake& snk, Fruits& fruit) {
-		return snk.getCoords() == fruit.getCoords();
+		return snk.getCoords().Y == fruit.getCoords().Y && snk.getCoords().X == fruit.getCoords().X;
 	}
 
 	void runGame() override {
 		view.printMessage();
-		Fruits fruit{ COORD{}, 0, view.getViewGrid() };
-		updateFruit(fruit, view.getViewGrid());
+        Fruits fruit{COORD{}, '%', view.getViewGrid() };
+//		updateFruit(fruit, view.getViewGrid());
 		while (true) {
 			view.drawLines();
 			controls.checkInput();
