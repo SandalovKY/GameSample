@@ -5,42 +5,59 @@
 #include "GameBase.h"
 #include "Fruits.h"
 
-const int WIDTH = 25, HEIGHT = 25;
-
+const int WIDTH = 15, HEIGHT = 15;
 
 class SnakeTheGame : public GameBase
 {
 	SnakeView view;
 	Snake snk;
-	SnakeControls controls; 
+	Fruits* fruit;
+	SnakeControls controls;
+	int points;
 public:
 	SnakeTheGame() :
 		view(WIDTH, HEIGHT),
-		snk( WIDTH / 2, HEIGHT / 2, view.getViewGrid(), '*', 1 ),
-		controls(snk)
+		snk({WIDTH / 2, HEIGHT / 2}, view.getViewGrid(), '*', 6),
+		controls(snk),
+		fruit(new Fruits{ {WIDTH / 4, HEIGHT / 4}, '%', view.getViewGrid() }),
+		points(0)
 	{}
 
-	bool snakeOnFruit(Snake& snk, Fruits& fruit) {
-		return snk.getCoords().X == fruit.getCoords().X &&
-			snk.getCoords().Y == fruit.getCoords().Y;
+	bool snakeOnFruit() {
+		return abs(snk.getHeadCoords().X - fruit->getCoords().X) == 1 &&
+			snk.getHeadCoords().Y == fruit->getCoords().Y ||
+			abs(snk.getHeadCoords().Y - fruit->getCoords().Y) == 1 &&
+			snk.getHeadCoords().X == fruit->getCoords().X;
 	}
+
+	void pauseGame() override {}
+	void resumeGame() override {}
+	void finishGame() override {}
 
 	void runGame() override {
 		view.printMessage();
-		Fruits fruit{ {WIDTH / 4, HEIGHT / 4}, '%', view.getViewGrid()};
+		updateFruit(fruit, view.getViewGrid());
+		updateFruit(fruit, view.getViewGrid());
+		updateFruit(fruit, view.getViewGrid());
 		while (true) {
+			std::string pointsInfo("Points: ");
+			pointsInfo.append(std::to_string(this->points));
+			view.updateDynamicInfo(pointsInfo);
 			view.drawLines();
 			controls.checkInput();
-			snk.move();
-			/*if (fruit.isEaten()) {
-				generateOtherFruit
-			}*/
+			if (snk.move()) {
+				generateNewFruit();
+				this->points += 1;
+			}
 		}
-		/*while (true) {
-			view.drawLines();
-			controls.checkInput();
-			snk.move();
-		}*/
+	}
+
+	void generateNewFruit() {
+		COORD newCoords;
+		newCoords.X = rand() % view.getViewGrid().getWidth();
+		newCoords.Y = rand() % view.getViewGrid().getHeight();
+		char newSymbol = '%';
+		this->fruit->updateWClean(newCoords, newSymbol);
 	}
 
 	void initGame() override {

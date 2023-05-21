@@ -130,9 +130,9 @@
     <ClCompile Include="BaseGrid.cpp" />
     <ClCompile Include="Controls.cpp" />
     <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="FruitGenerator.cpp" />
     <ClCompile Include="Fruits.cpp" />
     <ClCompile Include="GameBase.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="SnakeTheGame.cpp" />
     <ClCompile Include="SnakeView.cpp" />
@@ -141,9 +141,9 @@
   <ItemGroup>
     <ClInclude Include="BaseGrid.h" />
     <ClInclude Include="Controls.h" />
-    <ClInclude Include="FruitGenerator.h" />
     <ClInclude Include="Fruits.h" />
     <ClInclude Include="GameBase.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="SnakeTheGame.h" />
     <ClInclude Include="SnakeView.h" />
