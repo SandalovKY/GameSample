@@ -17,7 +17,7 @@ public:
 	}
 
 	void eat() {
-		updateFruit(*this, grid);
+		updateFruit_1(*this, grid);
 		grid.setSymbol(this->crd, this->symbol);
 	}
 
@@ -25,10 +25,10 @@ public:
 		return this->crd;
 	}
 
-	friend void updateFruit(Fruits& fruit, BaseGrid& grid);
+	friend void updateFruit_1(Fruits& fruit, BaseGrid& grid);
 };
 
-void updateFruit(Fruits& fruit, BaseGrid& grid) {
+void updateFruit_1(Fruits& fruit, BaseGrid& grid) {
 	fruit.crd.X = rand() % grid.getWidth();
 	fruit.crd.Y = rand() % grid.getHeight();
 	fruit.symbol = (rand() % 2 == 0) ? 42 : 43;
