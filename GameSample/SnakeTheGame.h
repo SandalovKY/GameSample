@@ -36,9 +36,7 @@ public:
 
 	void runGame() override {
 		view.printMessage();
-		updateFruit(fruit, view.getViewGrid());
-		updateFruit(fruit, view.getViewGrid());
-		updateFruit(fruit, view.getViewGrid());
+		Fruits::updateFruit(*fruit, view.getViewGrid());
 		while (true) {
 			std::string pointsInfo("Points: ");
 			pointsInfo.append(std::to_string(this->points));

@@ -8,5 +8,6 @@ class Fruits: public GameObject
 private:
 public:
 	Fruits(COORD crd, char symbol, BaseGrid& grid) : GameObject(grid, crd, symbol) {}
+    static void updateFruit(Fruits& fruit, BaseGrid& grid);
 };
 

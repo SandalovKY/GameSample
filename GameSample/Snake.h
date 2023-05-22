@@ -4,6 +4,8 @@
 #include <stdexcept>
 #include <iostream>
 
+using std::min, std::max;
+
 enum Directions { up, down, left, right };
 
 class SnakeSegment : public GameObject
